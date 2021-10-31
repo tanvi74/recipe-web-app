@@ -37,9 +37,16 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(mongoSanitize());
 
 
+// Test middleware
+// app.use((req, res, next) => {
+//   req.requestTime = new Date().toISOString();
+//   console.log(req.body);
+//   next();
+// });
+
 // 3) ROUTES
-app.use('/api/v1', authRoutes);
-app.use('/api/v1', recipeRoutes);
+app.use('/api/v1/user', authRoutes);
+app.use('/api/v1/recipe', recipeRoutes);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
